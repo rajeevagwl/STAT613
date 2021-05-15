@@ -1,1 +1,3 @@
-# STAT613A line I wrote on my local computer
+# STAT613
+
+I use this repository for STAT613 Data Science course. It will be used to host class assignments and projects.
