@@ -1,0 +1,146 @@
+---
+title: "STAT 613 Homework One"
+author: "Alexander Zakrzeski"
+date: "5/21/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Question One
+
+```{r}
+func1 = function(x) {
+  log(x) + log10(x) + log2(x)
+}
+
+func1(c(2,4,6,8,10))
+```
+
+## Question Two
+
+```{r}
+func2 = function(x) 
+  if (x^2 >=  100) {
+    print("This is a big number")
+  } else {
+    print("This is not a big number")
+}
+
+func2(15)
+func2(5)
+```
+
+## Question Three
+
+```{r}
+team_A = 5 
+team_B = 2
+
+if(team_A > team_B) {
+  print ("Team A won")
+} else if (team_A < team_B){
+  print ("Team B won")
+} else {
+  "Team A & B tied"
+}
+```
+
+## Question Four
+
+```{r}
+func3 = function(x)
+  if (x %% 3 == 0 && x %% 5 == 0) {
+  print("divisible by Three and Five")
+} else if (x %% 3 == 0 && x %% 4 == 0) {
+  print("divisible by Three and Four")
+} else {
+  print("neither")
+}
+
+func3(16)
+func3(45)
+func3(24)
+```
+
+## Question Five
+
+```{r}
+mpg$year = as.character(mpg$year)
+mpg1 = mpg%>%
+  select(where(is.numeric))
+mpg1
+
+loop = vector("double", ncol(mpg1))  
+for(i in seq_along(mpg1)) {           
+  loop[[i]] = var(mpg1[[i]])      
+ }
+loop
+```
+
+## Question Six
+
+```{r}
+x = c(11, 13, 17, 19, 23, 29)
+for (i in x) {
+    print(i^3 - i^2)
+  }
+```
+
+## Question Seven
+The data set contains fifty observations which are all of the states in the USA. There are four numeric column variables in the data set. These variables are Murder, Assault, UrbanPop and Rape. Finally, the data set gives both the
+percentage of the population that lives in an urban area and the number of 
+arrests per 100,000 for each of the other three variables that denote crimes 
+in the fifty states.
+
+```{r}
+USArrests
+```
+
+## Question Eight
+According to this data North Carolina has the largest number of assualt
+
+```{r}
+USArrests%>%
+  map_dbl(max)
+
+USArrests%>%
+  select(Assault)%>%
+  arrange(desc(Assault))
+```
+
+## Question Nine
+
+```{r}
+data = nycflights13::flights
+```
+
+## Question Ten
+A tibble is a data set representation characterized by the display of the first 
+ten rows and all of the variables that can be displayed in the R console.
+When working with big data it is much easier to work with tibbles than 
+data frames.
+
+```{r}
+dim(data)
+is_tibble(data)
+```
+
+## Question Eleven
+
+```{r}
+data%>%
+  map(str)
+```
+
+## Question Twelve
+
+```{r}
+mf = iris%>%
+  split(.$Species)%>%
+  map(~lm(Sepal.Length ~ Sepal.Width , data = .))
+mf
+```
