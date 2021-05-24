@@ -1,0 +1,27 @@
+---
+title: 'STAT 613 - Lab 4'
+author: "Rajeev Agrawal"
+date: "5/24/2021"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Instructions:
+
+### Create an Rmarkdown file that shows the ggplot coding needed to create a scatterplot for x = carat and y = price from the diamonds data table. 
+
+```{r}
+data("diamonds")
+
+diamonds %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point()
+```
+
+### Using the coding sequence illustrated in class push this Rmarkdown file from your computer through the bash terminal into Github. For this exercise, email me the url for your GitHub Repository that will indicate a successful push to GitHub.
