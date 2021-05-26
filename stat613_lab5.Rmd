@@ -1,0 +1,25 @@
+---
+title: 'STAT 613 - Lab 5'
+author: "Rajeev Agrawal"
+date: "5/26/2021"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Instructions:
+
+### Use your 412/612 skills to produce an Rmarkdown file that contains the code required to generate the side by side boxplots below. The data source is the mpg data table.  Then,  push your Rmarkdown file to Github from the bash terminal. Email your url for the Github repository.
+
+```{r}
+data("mpg")
+
+mpg %>%
+  ggplot(aes(x = trans, y = cty)) +
+  geom_boxplot(fill = "red")
+```
