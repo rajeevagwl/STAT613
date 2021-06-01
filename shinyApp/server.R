@@ -5,7 +5,7 @@ library(shiny)
 library(shinythemes)
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
+function(input, output, session) {
     
     output$txtout <- renderText({
         paste(input$txt, input$slider, format(input$date), sep = ", ")
@@ -14,5 +14,5 @@ shinyServer(function(input, output) {
         head(cars, 4)
     })
 }
-)
+
 

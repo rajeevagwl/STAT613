@@ -4,11 +4,10 @@
 library(shiny)
 library(shinythemes)
 
-    ui <- navbarPage(
-            theme = shinytheme("cerulean"),
-            "Covid 19 in DC, MD and VA",
-            tabPanel("Navbar 1",
-                     sidebarPanel(
+navbarPage(theme = shinytheme("cerulean"),
+           "Covid-19 in DC, MD & VA",
+           tabPanel("Navbar 1",
+                    sidebarPanel(
                          fileInput("file", "File input:"),
                          textInput("txt", "Text input:", "general"),
                          sliderInput("slider", "Slider input:", 1, 100, 30),
