@@ -6,7 +6,7 @@ library(shinythemes)
 
     ui <- navbarPage(
             theme = shinytheme("cerulean"),
-            "Home",
+            "Covid 19 in DC, MD and VA",
             tabPanel("Navbar 1",
                      sidebarPanel(
                          fileInput("file", "File input:"),
