@@ -3,9 +3,9 @@ library(dplyr)
 
 # Load in the csv file using the readr package
 
-mcd = read_csv("Maryland Covid Data.csv")
-vcd = read_csv("Virginia Covid Data.csv")
-dccd = read_csv("DC Covid Data.csv")
+mcd = read_csv(".data/MarylandCovidData.csv")
+vcd = read_csv(".data/VirginiaCovidData.csv")
+dccd = read_csv(".data/DCsCovidData.csv")
 
 # Merge the data sets vertically using the rbind function
 
