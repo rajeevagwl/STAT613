@@ -5,7 +5,7 @@ library(shiny)
 library(shinythemes)
 
 navbarPage(theme = shinytheme("slate"),
-           "Covid-19 in DC, Maryland & Virginia",
+           title=HTML("<b style=color:lightgray; >Covid-19 in DC, Maryland and Virginia</b>"),
            tabPanel("Maryland",
                     sidebarPanel(
                          fileInput("file", "File input:"),
