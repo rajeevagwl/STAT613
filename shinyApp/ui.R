@@ -4,7 +4,7 @@
 library(shiny)
 library(shinythemes)
 
-navbarPage(theme = shinytheme("cerulean"),
+navbarPage(theme = shinytheme("slate"),
            "Covid-19 in DC, Maryland & Virginia",
            tabPanel("Maryland",
                     sidebarPanel(
