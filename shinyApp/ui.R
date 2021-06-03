@@ -2,10 +2,9 @@
 # This is the user-interface definition of a Shiny web application. 
 
 library(shiny)
-library(shinythemes)
 
-navbarPage(theme = shinytheme("slate"),
-           title=HTML("<span><img style='margin-top:-10px; margin-left:-10px;' src='logo.png', height='50',width='200' /><b style='color:lightgray; font-size:20px;'>Covid-19 in DC, Maryland and Virginia</b></span>"),
+navbarPage(theme = "custom.css",
+           title=HTML("<span><img style='margin-top:-15px; margin-left:-10px;' src='logo.png', height='50',width='200' /><b style='color:lightgray; font-size:20px; margin-right:10px'>Covid-19 in DC, Maryland and Virginia</b></span>"),
            tabPanel("Maryland",
                     sidebarPanel(
                          fileInput("file", "File input:"),
