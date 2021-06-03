@@ -5,8 +5,8 @@ library(shiny)
 library(shinythemes)
 
 navbarPage(theme = shinytheme("cerulean"),
-           "Covid-19 in DC, MD & VA",
-           tabPanel("Navbar 1",
+           "Covid-19 in DC, Maryland & Virginia",
+           tabPanel("Maryland",
                     sidebarPanel(
                          fileInput("file", "File input:"),
                          textInput("txt", "Text input:", "general"),
@@ -35,6 +35,6 @@ navbarPage(theme = shinytheme("cerulean"),
                          )
                      )
             ),
-            tabPanel("Navbar 2", "This panel is intentionally left blank"),
-            tabPanel("Navbar 3", "This panel is intentionally left blank")
+            tabPanel("DC", "This panel is intentionally left blank"),
+            tabPanel("Virginia", "This panel is intentionally left blank")
         )
