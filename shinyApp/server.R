@@ -4,14 +4,22 @@
 library(shiny)
 library(shinythemes)
 
+source("plots.R")
+
 # Define server logic required to draw a histogram
 function(input, output, session) {
     
     output$txtout <- renderText({
         paste(input$txt, input$slider, format(input$date), sep = ", ")
     })
+    
     output$table <- renderTable({
         head(cars, 4)
+    })
+    
+    output$scatterPlot <- renderPlotly({
+        # Render a scatter plot...non-reactive
+        fig_scatter
     })
 }
 

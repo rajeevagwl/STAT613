@@ -19,17 +19,19 @@ navbarPage(theme = "custom.css",
                      mainPanel(
                          tabsetPanel(
                              tabPanel("Tab 1",
+                                      h4("Scatter plot"),
+                                      plotlyOutput("scatterPlot")
+                             ),
+                             tabPanel("Tab 2",
                                       h4("Table"),
                                       tableOutput("table"),
-                                      h4("Verbatim text output"),
-                                      verbatimTextOutput("txtout"),
+                                      
                                       h1("Header 1"),
                                       h2("Header 2"),
                                       h3("Header 3"),
                                       h4("Header 4"),
                                       h5("Header 5")
-                             ),
-                             tabPanel("Tab 2", "This panel is intentionally left blank"),
+                                      ),
                              tabPanel("Tab 3", "This panel is intentionally left blank")
                          )
                      )

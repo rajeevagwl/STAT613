@@ -52,7 +52,8 @@ p <- ggplot(data = mcd2, mapping = aes(x = Count, y = mnmcases)) +
                                                          "Jun. 2020", 
                                                          "Sep. 2020", 
                                                          "Dec. 2020", 
-                                                         "Mar. 2021"))
+                                                         "Mar. 2021")) +
+  theme_bw()
 
 fig <- ggplotly(p)
 fig
@@ -72,9 +73,13 @@ STBG
 Pie = STBG + coord_polar("y", start=0) 
 Pie
 
-ggplot(data = mcd1, mapping = aes(x = newcases, y = deathsperday)) +
-  geom_point(color = "black") +
+p_scatter <- ggplot(data = mcd1, mapping = aes(x = newcases, y = deathsperday)) +
+  geom_point(color = "blue", shape = 1) +
   ggtitle("Covid-19 Scatter Plot") +
-  theme(plot.title = element_text(hjust = 0.5)) +
   labs(x = "Deaths Per Day", y = "New Cases Per Day") +
-  geom_smooth(method = lm, se = FALSE) 
+  geom_smooth(method = lm, se = FALSE, color = "red") +
+  theme_igray() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+fig_scatter <- ggplotly(p_scatter)
+fig_scatter
