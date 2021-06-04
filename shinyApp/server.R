@@ -36,6 +36,24 @@ function(input, output, session) {
     output$view <- renderTable({
         head(datasetInput(), n = input$obs)
     })
+    
+    # output to download data
+    output$downloadCsv <- downloadHandler(
+        filename = function() {
+            paste("COVID_data_", input$dataset, ".csv", sep="")
+        },
+        content = function(file) {
+            if (input$dataset == "Maryland") {
+                write.csv(mcd, file) 
+            } else if (input$dataset == "DC") {
+                write.csv(dccd, file)
+            } else {
+                write.csv(vcd, file)
+            }
+        }
+    )
+    
+    
 }
 
 

@@ -55,7 +55,7 @@ navbarPage(theme = "custom.css",
                 # Input: Numeric entry for number of obs
                 numericInput(inputId = "obs",
                              label = "Number of observations to view:",
-                             value = 20)
+                             value = 16)
                 
               ),
               mainPanel(
@@ -64,11 +64,12 @@ navbarPage(theme = "custom.css",
                 h3(textOutput("caption", container = span)),
                 
                 # Output: HTML table with requested number of observations
-                tableOutput("view")
+                tableOutput("view"),
+                downloadButton("downloadCsv", "Download as CSV"),tags$br(),tags$br()
                 
               )
                      ),
-           tabPanel("About this site",
+           tabPanel("About this app",
                     tags$div(
                       tags$br(),tags$h4("Background"), 
                       "In December 2019, cases of severe respiratory illness began to be reported across the city of Wuhan in China. 
