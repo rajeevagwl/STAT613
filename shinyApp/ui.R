@@ -36,7 +36,7 @@ navbarPage(theme = "custom.css",
                          )
                      )
             ),
-            tabPanel("DC", "This panel is intentionally left blank"),
+            tabPanel("Vaccination Status", "This panel is intentionally left blank"),
             tabPanel("Data",
               # Sidebar panel for inputs ----
               sidebarPanel(
