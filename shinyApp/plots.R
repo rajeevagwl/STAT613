@@ -1,15 +1,16 @@
 library(readr)
-library(dplyr)
+library(tidyverse)
 library(stringr)
-library(ggplot2)
+library(plotly)
+library(ggthemes)
 
 mcd = read_csv("./data/MarylandCovidData.csv")
 vcd = read_csv("./data/VirginiaCovidData.csv")
 dccd = read_csv("./data/DCCovidData.csv")
 
-mvdccd = rbind(mcd, vcd, dccd)
+mvdccd <- rbind(mcd, vcd, dccd)
 
-mcd1 = mcd%>%
+mcd1 <- mcd %>%
   select(date, state, positive, positiveIncrease, death, deathIncrease,
          recovered, totalTestResults)%>%
   rename(totalcases = positive, newcases = positiveIncrease,
@@ -41,7 +42,7 @@ mcd2 = mcd1%>%
 
 
 mcd2$Count = 1:13
-ggplot(data = mcd2, mapping = aes(x = Count, y = mnmcases)) +
+p <- ggplot(data = mcd2, mapping = aes(x = Count, y = mnmcases)) +
   geom_path(color = "black") +
   geom_point(color = "blue") +
   ggtitle("Monthly Covid-19 Cases") +
@@ -52,6 +53,9 @@ ggplot(data = mcd2, mapping = aes(x = Count, y = mnmcases)) +
                                                          "Sep. 2020", 
                                                          "Dec. 2020", 
                                                          "Mar. 2021"))
+
+fig <- ggplotly(p)
+fig
 
 mcd3 = mcd1%>%
   group_by(date)%>%
