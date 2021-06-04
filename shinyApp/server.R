@@ -2,6 +2,7 @@
 #' @description This is the server logic of the Shiny web application
 
 library(shiny)
+library(plotly)
 
 source("plots.R")
 
