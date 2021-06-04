@@ -6,7 +6,7 @@ library(plotly)
 
 navbarPage(theme = "custom.css",
            title=HTML("<span><img style='margin-top:-15px; margin-left:-10px;' src='logo.png', height='50',width='200' /><b style='color:lightgray; font-size:20px; margin-right:10px'>Covid-19 in DC, Maryland and Virginia</b></span>"),
-           tabPanel("Maryland",
+           tabPanel("Plots",
                     sidebarPanel(
                          fileInput("file", "File input:"),
                          textInput("txt", "Text input:", "general"),
@@ -19,11 +19,10 @@ navbarPage(theme = "custom.css",
                      ),
                      mainPanel(
                          tabsetPanel(
-                             tabPanel("Tab 1",
-                                      h4("Scatter plot"),
+                             tabPanel("Scatter Plot",
                                       plotlyOutput("scatterPlot")
                              ),
-                             tabPanel("Tab 2",
+                             tabPanel("Time Series Plot",
                                       h4("Table"),
                                       tableOutput("table"),
                                       
@@ -33,7 +32,7 @@ navbarPage(theme = "custom.css",
                                       h4("Header 4"),
                                       h5("Header 5")
                                       ),
-                             tabPanel("Tab 3", "This panel is intentionally left blank")
+                             tabPanel("Bar Chart", "This panel is intentionally left blank")
                          )
                      )
             ),
