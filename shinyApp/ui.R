@@ -71,7 +71,7 @@ navbarPage(theme = "custom.css",
             tabPanel("About", 
                     "Data source",
                     h4("Authors: Rajeev Agrawal and Alex Zakrzeski"),
-                    h4("Course: STAT613")
+                    h4("Course: STAT613"),
                     h4("Github: code")
            )
         )
