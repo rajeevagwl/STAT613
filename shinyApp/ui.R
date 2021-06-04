@@ -1,5 +1,5 @@
-#
-# This is the user-interface definition of a Shiny web application. 
+#' @author Rajeev Agrawal
+#' @description This is the user-interface definition of the Shiny web application. 
 
 library(shiny)
 
@@ -37,5 +37,37 @@ navbarPage(theme = "custom.css",
                      )
             ),
             tabPanel("DC", "This panel is intentionally left blank"),
-            tabPanel("Virginia", "This panel is intentionally left blank")
+            tabPanel("Data",
+              # Sidebar panel for inputs ----
+              sidebarPanel(
+                
+                # Input: Text for providing a caption ----
+                textInput(inputId = "caption",
+                          label = "Caption:",
+                          value = "Data Summary"),
+                
+                # Input: Selector for choosing dataset ----
+                selectInput(inputId = "dataset",
+                            label = "Choose a dataset:",
+                            choices = c("Maryland", "DC", "Virginia")),
+                
+                # Input: Numeric entry for number of obs
+                numericInput(inputId = "obs",
+                             label = "Number of observations to view:",
+                             value = 15)
+                
+              ),
+              mainPanel(
+                
+                # Output: Formatted text for caption
+                h3(textOutput("caption", container = span)),
+                
+                # Output: HTML table with requested number of observations
+                tableOutput("view")
+                
+              )
+                     ),
+            tabPanel("About", 
+                    "Data source, authors etc."
+           )
         )

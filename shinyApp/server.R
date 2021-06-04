@@ -1,8 +1,7 @@
-#
-# This is the server logic of a Shiny web application.
+#' @author Rajeev Agrawal
+#' @description This is the server logic of the Shiny web application
 
 library(shiny)
-library(shinythemes)
 
 source("plots.R")
 
@@ -20,6 +19,21 @@ function(input, output, session) {
     output$scatterPlot <- renderPlotly({
         # Render a scatter plot...non-reactive
         fig_scatter
+    })
+    
+    datasetInput <- reactive({
+        switch(input$dataset,
+               "Maryland" = mcd,
+               "DC" = dccd,
+               "Virginia" = vcd)
+    })
+    
+    output$caption <- renderText({
+        input$caption
+    })
+    
+    output$view <- renderTable({
+        head(datasetInput(), n = input$obs)
     })
 }
 

@@ -1,3 +1,6 @@
+#' @author Alexander Zakrzeski, Rajeev Agrawal
+#' @description STAT613 - Shiny app plots
+
 library(readr)
 library(tidyverse)
 library(stringr)
