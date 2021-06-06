@@ -1,4 +1,4 @@
-#' @author Rajeev Agrawal
+#' @author Rajeev Agrawal, Alexander Zakrzeski
 #' @description This is the user-interface definition of the Shiny web application. 
 
 library(shiny)
