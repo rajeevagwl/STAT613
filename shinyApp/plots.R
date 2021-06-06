@@ -3,9 +3,6 @@
 
 library(readr)
 library(tidyverse)
-library(stringr)
-library(plotly)
-library(ggthemes)
 library(zoo)
 
 mcd = read_csv("./data/MarylandCovidData.csv", col_types = cols(date = col_date(format = "%m/%d/%y")))
@@ -22,16 +19,14 @@ mvdccd$date %>%
   range() ->
   date_range
 
+#Get total monthly cases and monthly deaths
 mvdccd <- mvdccd %>%
   select(date, Date, state, positive, positiveIncrease, death, deathIncrease,
          recovered, totalTestResults) %>%
   rename(totalcases = positive, newcases = positiveIncrease,
          totaldeaths = death, deathsperday = deathIncrease, 
          totaltests = totalTestResults) %>%
-  replace(is.na(.), 0)
-
-#Get total monthly cases and monthly deaths
-mvdccd <- mvdccd %>%
+  replace(is.na(.), 0) %>%
   group_by(Date, state) %>%
   mutate(`Monthly cases` = sum(newcases),
          `Monthly deaths` = sum(deathsperday))
