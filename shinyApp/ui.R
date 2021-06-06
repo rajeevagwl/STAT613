@@ -8,14 +8,24 @@ navbarPage(theme = "custom.css",
            title=HTML("<span><img style='margin-top:-15px; margin-left:-10px;' src='logo.png', height='50',width='200' /><b style='color:lightgray; font-size:20px; margin-right:10px'>Covid-19 in DC, Maryland and Virginia</b></span>"),
            tabPanel("Plots",
                     sidebarPanel(
-                         fileInput("file", "File input:"),
-                         textInput("txt", "Text input:", "general"),
-                         sliderInput("slider", "Slider input:", 1, 100, 30),
-                         tags$h5("Default actionButton:"),
-                         actionButton("action", "Search"),
-                         
-                         tags$h5("actionButton with CSS class:"),
-                         actionButton("action2", "Action button", class = "btn-primary")
+                      span(tags$i(h6("Reported cases are subject to significant variation in testing policy and capacity between countries.")), style="color:#045a8d"),
+                      
+                      selectInput("level_select", "State(s):",   
+                                  choices = c("DC, Maryland and Virginia", "DC", "Maryland", "Virginia"), 
+                                  selected = c("DC, Maryland and Virginia"),
+                                  multiple = FALSE),
+                      
+                      sliderInput("range_date",
+                                  "Date range:",
+                                  min = 1,
+                                  max = 10,
+                                  value=c(2,6)
+                                  ),
+                      
+                         actionButton("action2", "Action button", class = "btn-primary"),tags$br(),tags$br(),
+                      
+                      "Select outcome, regions, and plotting start date from drop-down menues to update plots. Countries with at least 1000 confirmed cases are included."
+                      
                      ),
                      mainPanel(
                          tabsetPanel(

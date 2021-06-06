@@ -9,9 +9,9 @@ source("plots.R")
 # Define server logic required to draw a histogram
 function(input, output, session) {
     
-    output$txtout <- renderText({
-        paste(input$txt, input$slider, format(input$date), sep = ", ")
-    })
+    # output$txtout <- renderText({
+    #     paste(input$txt, input$slider, format(input$date), sep = ", ")
+    # })
     
     output$casesPlot <- renderPlotly({
         # Render a plot...non-reactive
