@@ -36,6 +36,3 @@ mvdccd <- mvdccd %>%
   mutate(`Monthly cases` = sum(newcases),
          `Monthly deaths` = sum(deathsperday))
 
-# Pie = STBG + coord_polar("y", start=0) 
-# Pie
-
