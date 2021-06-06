@@ -19,18 +19,11 @@ navbarPage(theme = "custom.css",
                      ),
                      mainPanel(
                          tabsetPanel(
-                             tabPanel("Scatter Plot",
-                                      plotlyOutput("scatterPlot")
+                             tabPanel("Covid-19 cases",
+                                      plotlyOutput("casesPlot")
                              ),
-                             tabPanel("Time Series Plot",
-                                      h4("Table"),
-                                      tableOutput("table"),
-                                      
-                                      h1("Header 1"),
-                                      h2("Header 2"),
-                                      h3("Header 3"),
-                                      h4("Header 4"),
-                                      h5("Header 5")
+                             tabPanel("Covid-19 deaths",
+                                      plotlyOutput("deathsPlot")
                                       ),
                              tabPanel("Bar Chart", "This panel is intentionally left blank")
                          )
@@ -81,7 +74,7 @@ navbarPage(theme = "custom.css",
                         This site is updated daily based on data published by Johns Hopkins University. 
                         By looking beyond the headlines, we hope it is possible to get a deeper understanding of this unfolding pandemic.",
                       tags$br(),tags$br(),tags$h4("Code"),
-                      "Code and input data used to generate this Shiny mapping tool are available on ",tags$a(href="https://github.com/rajeevagwl/STAT613/tree/main/shinyApp", "Github."),
+                      "The code used to generate this Shiny application is available on ",tags$a(href="https://github.com/rajeevagwl/STAT613/tree/main/shinyApp", "Github."),
                       tags$br(),tags$br(),tags$h4("Sources"),
                       tags$b("2019-COVID cases: "), tags$a(href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series", "Johns Hopkins Center for Systems Science and Engineering github page,")," with additional information from the ",tags$a(href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports", "WHO's COVID-19 situation reports."),
                       " In previous versions of this site (up to 17th March 2020), updates were based solely on the WHO's situation reports.",tags$br(),
@@ -99,5 +92,4 @@ navbarPage(theme = "custom.css",
                       tags$img(src = "AU_logo.png", width = "75px", height = "75px"),tags$br(),tags$br()
                     )
                     )
-           
         )

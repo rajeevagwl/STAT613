@@ -1,4 +1,4 @@
-#' @author Alexander Zakrzeski, Rajeev Agrawal
+#' @author Rajeev Agrawal, Alexander Zakrzeski
 #' @description STAT613 - Shiny app plots
 
 library(readr)
@@ -6,83 +6,67 @@ library(tidyverse)
 library(stringr)
 library(plotly)
 library(ggthemes)
+library(zoo)
 
-mcd = read_csv("./data/MarylandCovidData.csv")
-vcd = read_csv("./data/VirginiaCovidData.csv")
-dccd = read_csv("./data/DCCovidData.csv")
+mcd = read_csv("./data/MarylandCovidData.csv", col_types = cols(date = col_date(format = "%m/%d/%y")))
+vcd = read_csv("./data/VirginiaCovidData.csv", col_types = cols(date = col_date(format = "%m/%d/%y")))
+dccd = read_csv("./data/DCCovidData.csv", col_types = cols(date = col_date(format = "%m/%d/%y")))
 
 mvdccd <- rbind(mcd, vcd, dccd)
 
-mcd1 <- mcd %>%
+#Get only the Year-Month
+mvdccd <- transform(mvdccd, date = as.yearmon(date))
+
+mvdccd <- mvdccd %>%
   select(date, state, positive, positiveIncrease, death, deathIncrease,
-         recovered, totalTestResults)%>%
+         recovered, totalTestResults) %>%
   rename(totalcases = positive, newcases = positiveIncrease,
          totaldeaths = death, deathsperday = deathIncrease, 
-         totaltests = totalTestResults)%>%
-  replace(is.na(.), 0)%>%
-  mutate(recovered = if_else(recovered < 26, 0, recovered))
+         totaltests = totalTestResults) %>%
+  replace(is.na(.), 0)
 
-str_left_right = function(string, m, n) {
-  left = substr(string, 1, m)
-  right = substr(string, nchar(string) - (n - 1), nchar(string))
-  both = paste(left, right)
-}
+#Get total monthly cases and monthly deaths
+mvdccd <- mvdccd %>%
+  group_by(date, state) %>%
+  mutate(`Monthly cases` = sum(newcases),
+         `Monthly deaths` = sum(deathsperday))
 
-mcd1$date = str_left_right(mcd1$date, 2, 3)
-mcd1$date = str_replace_all(mcd1$date , " /", "")
-mcd1$date = str_replace_all(mcd1$date , "1020", "10/20")
-mcd1$date = str_replace_all(mcd1$date , "1120", "11/20")
-mcd1$date = str_replace_all(mcd1$date , "1220", "12/20")
-
-mcd1$date  = as.factor(mcd1$date)
-
-mcd2 = mcd1%>%
-  group_by(date)%>%
-  summarise(mnmcases = sum(newcases))%>%
-  arrange(factor(date, levels = date
-                 [c(6, 8, 9, 10, 11, 12, 13, 2, 3, 4, 1, 5, 6)], 
-                  desc(mnmcases)))
-
-
-mcd2$Count = 1:13
-p <- ggplot(data = mcd2, mapping = aes(x = Count, y = mnmcases)) +
-  geom_path(color = "black") +
-  geom_point(color = "blue") +
-  ggtitle("Monthly Covid-19 Cases") +
-  theme(plot.title = element_text(hjust = 0.5)) + 
-  labs(x = "Months", y = "Monthly Covid-19 Cases" ) +
-  scale_x_continuous(breaks = c(1,4,7,10,13), labels = c(" Mar. 2020",
-                                                         "Jun. 2020", 
-                                                         "Sep. 2020", 
-                                                         "Dec. 2020", 
-                                                         "Mar. 2021")) +
-  theme_bw()
+#Get plotly plots
+p <- mvdccd %>%
+  ggplot(aes(x = date, y = `Monthly cases`)) +
+  geom_path(aes(color = state)) +
+  geom_point(aes(color = state)) +
+  ggtitle("Monthly COVID-19 cases in DC, MD and VA") + 
+  labs(x = "", y = "Monthly Covid-19 cases" ) +
+  theme_igray() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 fig <- ggplotly(p)
 fig
 
-mcd3 = mcd1%>%
-  group_by(date)%>%
-  summarise(deathspermonth = sum(deathsperday))%>%
-  arrange(factor(date, levels = date
-                 [c(6, 8, 9, 10, 11, 12, 13, 2, 3, 4, 1, 5, 6)], 
-                 desc(deathspermonth)))
+p2 <- mvdccd %>%
+  ggplot(aes(x = date, y = `Monthly deaths`)) +
+  geom_path(aes(color = state)) +
+  geom_point(aes(color = state)) +
+  ggtitle("Monthly COVID-19 deaths in DC, MD and VA") + 
+  labs(x = "", y = "Monthly Covid-19 deaths" ) +
+  theme_igray() +
+  theme(plot.title = element_text(hjust = 0.5))
 
-STBG = ggplot(data = mcd3, aes(x = "", y = deathspermonth, fill = date))+
-  geom_bar(width = 0.5, stat = "identity") +
-  labs(x = "Months", y = "Monthly Covid-19 Deaths" ) 
-STBG
+fig2 <- ggplotly(p2)
+fig2
 
-Pie = STBG + coord_polar("y", start=0) 
-Pie
+# Pie = STBG + coord_polar("y", start=0) 
+# Pie
 
-p_scatter <- ggplot(data = mcd1, mapping = aes(x = newcases, y = deathsperday)) +
-  geom_point(color = "blue", shape = 1) +
+p3 <- mvdccd %>%
+  ggplot(aes(x = newcases, y = deathsperday)) +
+  geom_point(aes(color = state), shape = 1) +
   ggtitle("Covid-19 Scatter Plot") +
   labs(x = "Deaths Per Day", y = "New Cases Per Day") +
   geom_smooth(method = lm, se = FALSE, color = "red") +
   theme_igray() +
   theme(plot.title = element_text(hjust = 0.5))
 
-fig_scatter <- ggplotly(p_scatter)
-fig_scatter
+fig3 <- ggplotly(p3)
+fig3

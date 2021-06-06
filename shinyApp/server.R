@@ -13,13 +13,14 @@ function(input, output, session) {
         paste(input$txt, input$slider, format(input$date), sep = ", ")
     })
     
-    output$table <- renderTable({
-        head(cars, 4)
+    output$casesPlot <- renderPlotly({
+        # Render a plot...non-reactive
+        fig
     })
     
-    output$scatterPlot <- renderPlotly({
-        # Render a scatter plot...non-reactive
-        fig_scatter
+    output$deathsPlot <- renderPlotly({
+        # Render a plot...non-reactive
+        fig2
     })
     
     datasetInput <- reactive({

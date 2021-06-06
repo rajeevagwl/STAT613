@@ -5,9 +5,9 @@ account: rajeev-m-agrawal
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4226371
-bundleId: 4676591
+bundleId: 4682432
 url: https://rajeev-m-agrawal.shinyapps.io/Covid19_DC_MD_VA/
-when: 1622792278.56379
-lastSyncTime: 1622792278.56379
+when: 1622945298.0669
+lastSyncTime: 1622945298.0669
 asMultiple: FALSE
 asStatic: FALSE
