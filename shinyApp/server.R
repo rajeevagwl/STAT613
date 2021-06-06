@@ -2,10 +2,9 @@
 #' @description This is the server logic of the Shiny web application
 
 library(shiny)
-
 source("tidy.R")
 
-# Define server logic required to draw a histogram
+# Define server logic
 function(input, output, session) {
     
     level_selectInput <- reactive({

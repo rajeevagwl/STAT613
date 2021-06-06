@@ -2,7 +2,6 @@
 #' @description This is the user-interface definition of the Shiny web application. 
 
 library(shiny)
-
 source("tidy.R")
 
 navbarPage(theme = "custom.css",
