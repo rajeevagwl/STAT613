@@ -4,27 +4,32 @@
 library(shiny)
 library(plotly)
 
+source("plots.R")
+
 navbarPage(theme = "custom.css",
            title=HTML("<span><img style='margin-top:-15px; margin-left:-10px;' src='logo.png', height='50',width='200' /><b style='color:lightgray; font-size:20px; margin-right:10px'>Covid-19 in DC, Maryland and Virginia</b></span>"),
            tabPanel("Plots",
                     sidebarPanel(
-                      span(tags$i(h6("Reported cases are subject to significant variation in testing policy and capacity between countries.")), style="color:#045a8d"),
+                      span(tags$i(h5("Reported cases and deaths are subject to significant variation in testing policy and capacity between states.")), style="color:#045a8d"),tags$br(),
                       
-                      selectInput("level_select", "State(s):",   
+                      selectInput(inputId = "level_select",
+                                  label = "State(s):",   
                                   choices = c("DC, Maryland and Virginia", "DC", "Maryland", "Virginia"), 
                                   selected = c("DC, Maryland and Virginia"),
                                   multiple = FALSE),
+                      tags$br(),
                       
-                      sliderInput("range_date",
-                                  "Date range:",
-                                  min = 1,
-                                  max = 10,
-                                  value=c(2,6)
+                      sliderInput(inputId = "range_date",
+                                  label = "Date range:",
+                                  min = date_range[1],
+                                  max = date_range[2],
+                                  value=c(date_range[1], date_range[2]),
+                                  timeFormat="%Y-%m-%d"
                                   ),
                       
-                         actionButton("action2", "Action button", class = "btn-primary"),tags$br(),tags$br(),
+                         tags$br(),
                       
-                      "Select outcome, regions, and plotting start date from drop-down menues to update plots. Countries with at least 1000 confirmed cases are included."
+                      "Select regions, plotting start date and plotting end date to update plots."
                       
                      ),
                      mainPanel(

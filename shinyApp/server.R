@@ -9,23 +9,83 @@ source("plots.R")
 # Define server logic required to draw a histogram
 function(input, output, session) {
     
-    # output$txtout <- renderText({
-    #     paste(input$txt, input$slider, format(input$date), sep = ", ")
-    # })
+    level_selectInput <- reactive({
+        switch(input$level_select,
+               "DC, Maryland and Virginia" = "All",
+               "Maryland" = "MD",
+               "DC" = "DC",
+               "Virginia" = "VA")
+    })
     
     output$casesPlot <- renderPlotly({
-        # Render a plot...non-reactive
-        fig
+        
+        # Render a reactive plot
+        if (level_selectInput() == "All") {
+            mvdccd1 <- mvdccd
+        } else {
+            mvdccd1 <- mvdccd %>%
+                filter(state == level_selectInput())
+        }
+        
+        p <- mvdccd1 %>%
+            filter(date <= input$range_date[2],
+                   date >= input$range_date[1]) %>%
+            ggplot(aes(x = Date, y = `Monthly cases`)) +
+            geom_path(aes(color = state)) +
+            geom_point(aes(color = state)) +
+            ggtitle("New monthly COVID-19 cases") + 
+            labs(x = "", y = "Monthly Covid-19 cases" ) +
+            theme_igray() +
+            theme(plot.title = element_text(hjust = 0.5))
+        
+        ggplotly(p)
     })
     
     output$deathsPlot <- renderPlotly({
-        # Render a plot...non-reactive
-        fig2
+        
+        # Render a reactive plot
+        if (level_selectInput() == "All") {
+            mvdccd1 <- mvdccd
+        } else {
+            mvdccd1 <- mvdccd %>%
+                filter(state == level_selectInput())
+        }
+        
+        p2 <- mvdccd1 %>%
+            filter(date <= input$range_date[2],
+                   date >= input$range_date[1]) %>%
+            ggplot(aes(x = Date, y = `Monthly deaths`)) +
+            geom_path(aes(color = state)) +
+            geom_point(aes(color = state)) +
+            ggtitle("New monthly COVID-19 deaths") + 
+            labs(x = "", y = "Monthly Covid-19 deaths" ) +
+            theme_igray() +
+            theme(plot.title = element_text(hjust = 0.5))
+        
+        ggplotly(p2)
     })
     
     output$deaths2Plot <- renderPlotly({
-        # Render a plot...non-reactive
-        fig3
+        
+        # Render a reactive plot
+        if (level_selectInput() == "All") {
+            mvdccd1 <- mvdccd
+        } else {
+            mvdccd1 <- mvdccd %>%
+                filter(state == level_selectInput())
+        }
+        
+        p3 <- mvdccd1 %>%
+            filter(date <= input$range_date[2],
+                   date >= input$range_date[1]) %>%
+            ggplot(aes(x = date, y = totaldeaths)) +
+            geom_line(aes(color = state)) +
+            ggtitle("Cumulative Covid-19 deaths") +
+            labs(x = "Date", y = "Total deaths") +
+            theme_igray() +
+            theme(plot.title = element_text(hjust = 0.5))
+        
+        ggplotly(p3)
     })
     
     datasetInput <- reactive({
