@@ -8,7 +8,7 @@ navbarPage(theme = "custom.css",
            title=HTML("<span><img style='margin-top:-15px; margin-left:-10px;' src='logo.png', height='50',width='200' /><b style='color:lightgray; font-size:20px; margin-right:10px'>Covid-19 in DC, Maryland and Virginia</b></span>"),
            tabPanel("Plots",
                     sidebarPanel(
-                      span(tags$i(h5("Reported cases and deaths are subject to significant variation in testing policy and capacity between states.")), style="color:#045a8d"),tags$br(),
+                      span(tags$i(h5("Reported Covid-19 cases and deaths attributed to Covid-19 are subject to significant variation in policy and capacity between states.")), style="color:#045a8d"),tags$br(),
                       
                       selectInput(inputId = "level_select",
                                   label = "State(s):",   
