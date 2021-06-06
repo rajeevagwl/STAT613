@@ -2,9 +2,8 @@
 #' @description This is the server logic of the Shiny web application
 
 library(shiny)
-library(plotly)
 
-source("plots.R")
+source("tidy.R")
 
 # Define server logic required to draw a histogram
 function(input, output, session) {

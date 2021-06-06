@@ -1,9 +1,10 @@
 #' @author Rajeev Agrawal, Alexander Zakrzeski
-#' @description STAT613 - Shiny app plots
+#' @description STAT613 Shiny app - Tidy data
 
-library(readr)
 library(tidyverse)
 library(zoo)
+library(ggthemes)
+library(plotly)
 
 mcd = read_csv("./data/MarylandCovidData.csv", col_types = cols(date = col_date(format = "%m/%d/%y")))
 vcd = read_csv("./data/VirginiaCovidData.csv", col_types = cols(date = col_date(format = "%m/%d/%y")))
