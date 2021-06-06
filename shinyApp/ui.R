@@ -25,7 +25,9 @@ navbarPage(theme = "custom.css",
                              tabPanel("Covid-19 deaths",
                                       plotlyOutput("deathsPlot")
                                       ),
-                             tabPanel("Bar Chart", "This panel is intentionally left blank")
+                             tabPanel("Cumulative Covid-19 deaths", 
+                                      plotlyOutput("deaths2Plot")
+                                      )
                          )
                      )
             ),

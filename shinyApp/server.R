@@ -23,6 +23,11 @@ function(input, output, session) {
         fig2
     })
     
+    output$deaths2Plot <- renderPlotly({
+        # Render a plot...non-reactive
+        fig3
+    })
+    
     datasetInput <- reactive({
         switch(input$dataset,
                "Maryland" = mcd,

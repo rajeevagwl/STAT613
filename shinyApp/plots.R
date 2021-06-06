@@ -15,10 +15,10 @@ dccd = read_csv("./data/DCCovidData.csv", col_types = cols(date = col_date(forma
 mvdccd <- rbind(mcd, vcd, dccd)
 
 #Get only the Year-Month
-mvdccd <- transform(mvdccd, date = as.yearmon(date))
+mvdccd <- transform(mvdccd, Date = as.yearmon(date))
 
 mvdccd <- mvdccd %>%
-  select(date, state, positive, positiveIncrease, death, deathIncrease,
+  select(date, Date, state, positive, positiveIncrease, death, deathIncrease,
          recovered, totalTestResults) %>%
   rename(totalcases = positive, newcases = positiveIncrease,
          totaldeaths = death, deathsperday = deathIncrease, 
@@ -27,16 +27,16 @@ mvdccd <- mvdccd %>%
 
 #Get total monthly cases and monthly deaths
 mvdccd <- mvdccd %>%
-  group_by(date, state) %>%
+  group_by(Date, state) %>%
   mutate(`Monthly cases` = sum(newcases),
          `Monthly deaths` = sum(deathsperday))
 
 #Get plotly plots
 p <- mvdccd %>%
-  ggplot(aes(x = date, y = `Monthly cases`)) +
+  ggplot(aes(x = Date, y = `Monthly cases`)) +
   geom_path(aes(color = state)) +
   geom_point(aes(color = state)) +
-  ggtitle("Monthly COVID-19 cases in DC, MD and VA") + 
+  ggtitle("New monthly COVID-19 cases in DC, MD and VA") + 
   labs(x = "", y = "Monthly Covid-19 cases" ) +
   theme_igray() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -45,10 +45,10 @@ fig <- ggplotly(p)
 fig
 
 p2 <- mvdccd %>%
-  ggplot(aes(x = date, y = `Monthly deaths`)) +
+  ggplot(aes(x = Date, y = `Monthly deaths`)) +
   geom_path(aes(color = state)) +
   geom_point(aes(color = state)) +
-  ggtitle("Monthly COVID-19 deaths in DC, MD and VA") + 
+  ggtitle("New monthly COVID-19 deaths in DC, MD and VA") + 
   labs(x = "", y = "Monthly Covid-19 deaths" ) +
   theme_igray() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -60,11 +60,10 @@ fig2
 # Pie
 
 p3 <- mvdccd %>%
-  ggplot(aes(x = newcases, y = deathsperday)) +
-  geom_point(aes(color = state), shape = 1) +
-  ggtitle("Covid-19 Scatter Plot") +
-  labs(x = "Deaths Per Day", y = "New Cases Per Day") +
-  geom_smooth(method = lm, se = FALSE, color = "red") +
+  ggplot(aes(x = date, y = totaldeaths)) +
+  geom_line(aes(color = state)) +
+  ggtitle("Cumulative Covid-19 deaths in DC, MD and VA") +
+  labs(x = "Date", y = "Total deaths") +
   theme_igray() +
   theme(plot.title = element_text(hjust = 0.5))
 
