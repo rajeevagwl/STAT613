@@ -62,13 +62,17 @@ navbarPage(theme = "custom.css",
                 # Input: Numeric entry for number of obs
                 numericInput(inputId = "obs",
                              label = "Number of observations to view:",
-                             value = 16)
+                             value = 10)
                 
               ),
               mainPanel(
                 
                 # Output: Formatted text for caption
                 h3(textOutput("caption", container = span)),
+                # Output: Verbatim text for data summary
+                verbatimTextOutput("summary", placeholder = TRUE),
+                tags$style("#summary{ 
+overflow-y:scroll; max-height: 200px}"),
                 
                 # Output: HTML table with requested number of observations
                 tableOutput("view"),

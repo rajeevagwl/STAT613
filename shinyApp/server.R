@@ -93,15 +93,25 @@ function(input, output, session) {
                "Virginia" = vcd)
     })
     
+    #Create caption
     output$caption <- renderText({
         input$caption
     })
     
+    #Generate a summary of the dataset
+    output$summary <- renderPrint({
+        dataset <- datasetInput()
+        dataset %>%
+            select(date, death, deathIncrease, positive, positiveIncrease) %>%
+            summary()
+    })
+    
+    #Show the first "n" observations
     output$view <- renderTable({
         head(datasetInput(), n = input$obs)
     })
     
-    # output to download data
+    #Download dataset
     output$downloadCsv <- downloadHandler(
         filename = function() {
             paste("COVID_data_", input$dataset, ".csv", sep="")
