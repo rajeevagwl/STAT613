@@ -25,11 +25,11 @@ library(repurrrsive)
 
 ### b) Open and explore data for Git Hub repos by running the following code gh_repos.  Comment on the structure and arrangement of the data (Two or three sentences)
 
->It is an example of a nested list, that is, there are many lists contained inside the gh_repos, which itself is a list.
-
 ```{r, eval=FALSE}
 gh_repos
 ```
+
+>It is an example of a nested list, that is, there are many lists contained inside the gh_repos, which itself is a list.
 
 ### c) In two or three sentences, explain what happens to the data when you run the code; 
 
