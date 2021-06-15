@@ -3,10 +3,10 @@ title: "STAT 613 - Lab for Rectangling"
 author: "Rajeev Agrawal"
 date: "6/14/2021"
 output:
+  word_document: default
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
-  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -27,7 +27,7 @@ library(repurrrsive)
 
 >It is an example of a nested list, that is, there are many lists contained inside the gh_repos, which itself is a list.
 
-```{r}
+```{r, eval=FALSE}
 gh_repos
 ```
 
@@ -46,13 +46,13 @@ repos
 
 >30 (or 26 for the 4th repo) represents the number of lists in each of the repos in gh_repo. 68 on the other hand, represents the number of lists in each of the 30 sublists inside the 6 repo lists in gh_repo. 
 
-```{r}
+```{r, eval=FALSE}
 listviewer::jsonedit(gh_repos)
 ```
 
 ### e) Use and show R unesting code to produce the tibble below.
 
-```{r}
+```{r, message=FALSE, error=FALSE}
 tibble(repo = gh_repos) %>%
   unnest_auto(repo) %>%
   unnest_auto(repo)
