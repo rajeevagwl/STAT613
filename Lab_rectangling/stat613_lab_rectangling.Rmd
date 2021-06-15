@@ -1,0 +1,61 @@
+---
+title: "STAT 613 - Lab for Rectangling"
+author: "Rajeev Agrawal"
+date: "6/14/2021"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rvest)
+library(dplyr)
+library(tidyverse)
+library(repurrrsive)
+```
+
+## 1)
+
+### a) Explain or describe nested Lists.  (Three or four sentences)
+
+>A list can contain sublists, which in turn can contain sublists themselves, and so on. This is known as nested list. Sometimes the lists are contained in another list but we want to access the nested list’s elements. Since these elements are part of a list that cannot be directly accessed, first we need to access the broader list and then the list that contains the element to reach the actual element.
+
+### b) Open and explore data for Git Hub repos by running the following code gh_repos.  Comment on the structure and arrangement of the data (Two or three sentences)
+
+>It is an example of a nested list, that is, there are many lists contained inside the gh_repos, which itself is a list.
+
+```{r}
+gh_repos
+```
+
+### c) In two or three sentences, explain what happens to the data when you run the code; 
+
+>The code converts gh_repos into a tibble (a rectangular data frame) of lists that were originally contained inside gh_repos. There are 6 repos, each containing a list of 30 items except for 4th repo, which contains only 26 items.
+
+```{r}
+repos <- tibble(repo = gh_repos)
+repos
+```
+
+### d) Describe the data representation when the listserver tool is applied. And go into detail explaining why we have a nested List configuration. What do the numbers 30 and 68 represent? (6 or 7 sentences)
+
+>Listviewer lets us look at the list data for each Github repository in gh_repos. We already know that gh_repos is a nested list, that it a list containing lists, which in turn also contains lists, which is why we have a nested list configuration in the listviewer tool.
+
+>30 (or 26 for the 4th repo) represents the number of lists in each of the repos in gh_repo. 68 on the other hand, represents the number of lists in each of the 30 sublists inside the 6 repo lists in gh_repo. 
+
+```{r}
+listviewer::jsonedit(gh_repos)
+```
+
+### e) Use and show R unesting code to produce the tibble below.
+
+```{r}
+tibble(repo = gh_repos) %>%
+  unnest_auto(repo) %>%
+  unnest_auto(repo)
+```
+
+
