@@ -33,7 +33,7 @@ gh_repos
 
 ### c) In two or three sentences, explain what happens to the data when you run the code; 
 
->The code converts gh_repos into a tibble (a rectangular data frame) of lists that were originally contained inside gh_repos. There are 6 repos, each containing a list of 30 items except for 4th repo, which contains only 26 items.
+>The code converts gh_repos into a tibble (a rectangular data frame) of lists that were originally contained inside gh_repos. There are 6 repos, each containing a list of 30 lists except for 4th repo, which contains only 26 lists.
 
 ```{r}
 repos <- tibble(repo = gh_repos)
