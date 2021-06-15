@@ -94,9 +94,9 @@ overflow-y:scroll; max-height: 200px}"),
                       tags$br(),tags$br(),tags$h4("Code"),
                       "The code used to generate this Shiny application is available on ",tags$a(href="https://github.com/rajeevagwl/STAT613/tree/main/shinyApp", "Github."),
                       tags$br(),tags$br(),tags$h4("Source"),
-                      tags$b("The COVID Tracking Project at The Atlantic: "), tags$a(href="https://covidtracking.com/data/download", "	
+                      tags$b("The COVID Tracking Project at "), tags$i("The Atlantic:"), tags$br(),tags$br(), tags$a(href="https://covidtracking.com/data/download", "	
 Data Download | The COVID Tracking Project"),
-                      tags$br(),tags$br()," Notice: The COVID Tracking Project has ended all data collection as of March 7, 2021.These files are still available, but will only include data up to March 7, 2021. These CSV files contain daily data on the COVID-19 pandemic for the US and individual states.",
+                      tags$br(),tags$br(), tags$b("Notice:")," The COVID Tracking Project has ended all data collection as of March 7, 2021. The data files are still available, but will only include data up to March 7, 2021. These CSV files contain daily data on the COVID-19 pandemic for the US and individual states.",
                       tags$br(),
                       tags$br(),
                       
