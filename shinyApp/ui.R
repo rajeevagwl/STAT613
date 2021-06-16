@@ -82,22 +82,15 @@ overflow-y:scroll; max-height: 200px}"),
            tabPanel("About this app",
                     tags$div(
                       tags$br(),tags$h4("Background"), 
-                      "In December 2019, cases of severe respiratory illness began to be reported across the city of Wuhan in China. 
-                        These were caused by a new type of coronavirus, and the disease is now commonly referred to as COVID-19.
-                        The number of COVID-19 cases started to escalate more quickly in mid-January and the virus soon spread beyond China's borders. 
-                        This story has been rapidly evolving ever since, and each day we are faced by worrying headlines regarding the current state of the outbreak.",
+                      "In late 2019, cases of severe respiratory illness caused by a new type of coronavirus were reported across Wuhan, the capital of Hubei Province in the People's Republic of China. The disease is now commonly referred to as COVID-19. By January 2020, the virus had escaped the borders of China and the number of COVID-19 cases began to rise around the world. The COVID-19 pandemic has dramatically affected everyone's life in some way across the entire world. This global pandemic has made social distancing and wearing face masks in public the new norm. ",
                       tags$br(),tags$br(),
-                      "In isolation, these headlines can be hard to interpret. 
-                        How fast is the virus spreading? Are efforts to control the disease working? How does the situation compare with previous epidemics?
-                        This site is updated daily based on data published by Johns Hopkins University. 
-                        By looking beyond the headlines, we hope it is possible to get a deeper understanding of this unfolding pandemic.",
+                      "Rajeev and Alex are both graduate students at American University in Washington D.C. Over the last year, they diligently tracked various metrics from the COVID Tracking Project regarding COVID-19 in the Washington metropolitan area. They closely monitored both the number of new daily cases and deaths over the past fifteen months in anticipation that each of these metrics would decline as fast as possible. Doing this inspired them to make an interactive web app using the shiny package in R so we could better visualize the different metrics. They created interactive time series plots for both monthly Covid-19 cases and deaths in Washington D.C, Maryland and Virginia. In addition, a frequency plot for the cumulative number of Covid-19 cases in the three areas over the fifteen month span was also produced. The three interactive data visualizations found under the Plots tab in the shiny app help to better understand the data from the COVID Tracking Project. All of the interactive data visualizations have slider bars so individuals can view the specific time period that they desire when viewing the specific data visualizations. Finally, an interactive table of descriptive statistics was also created under the Data tab to allow for the viewers of the shiny app to become even more well-acquainted with the Covid-19 data.",
                       tags$br(),tags$br(),tags$h4("Code"),
                       "The code used to generate this Shiny application is available on ",tags$a(href="https://github.com/rajeevagwl/STAT613/tree/main/shinyApp", "Github."),
                       tags$br(),tags$br(),tags$h4("Source"),
                       tags$b("The COVID Tracking Project at "), tags$i("The Atlantic:"), tags$br(),tags$br(), tags$a(href="https://covidtracking.com/data/download", "	
 Data Download | The COVID Tracking Project"),
                       tags$br(),tags$br(), tags$b("Notice:")," The COVID Tracking Project has ended all data collection as of March 7, 2021. The data files are still available, but will only include data up to March 7, 2021. These CSV files contain daily data on the COVID-19 pandemic for the US and individual states.",
-                      tags$br(),
                       tags$br(),
                       
                       tags$br(),tags$h4("Authors"),
