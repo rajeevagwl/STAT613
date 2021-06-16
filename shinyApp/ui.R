@@ -91,7 +91,7 @@ overflow-y:scroll; max-height: 200px}"),
                       tags$b("The COVID Tracking Project at "), tags$i("The Atlantic:"), tags$br(),tags$br(), tags$a(href="https://covidtracking.com/data/download", "	
 Data Download | The COVID Tracking Project"),
                       tags$br(),tags$br(), tags$b("Notice:")," The COVID Tracking Project has ended all data collection as of March 7, 2021. The data files are still available, but will only include data up to March 7, 2021. These CSV files contain daily data on the COVID-19 pandemic for the US and individual states.",
-                      tags$br(),
+                      tags$br(),tags$br(),
                       
                       tags$br(),tags$h4("Authors"),
                       "Rajeev Agrawal, MS Data Science, American University",tags$br(),
